@@ -106,12 +106,17 @@ class Order(models.Model):
         throught='OrderItem',
         throught_fields=('product', 'order')
     )
+    table = models.PositiveSmallIntegerField(
+        blank=True,
+        null=True,
+    )
+    total = models.FloatField()
 
 
 class OrderItem(models.Model):
     product = models.ForeignKey(
         Product,
-        on_delete=models.CASCADE
+        on_delete=models.CASCADE,
     )
     order = models.ForeignKey(
         Order,
@@ -120,4 +125,19 @@ class OrderItem(models.Model):
     is_promo = models.BooleanField(
         default=False,
     )
-    quantity = models.PositiveSmallIntegerField()
+    quantity = models.PositiveSmallIntegerField(
+        default=1,
+    )
+
+
+class Tab(models.Model):
+    """
+    Define the Guest check tab (COMANDA)
+    """
+    qrCode = models.PositiveIntegerField(
+        unique=True,
+        blank=False,
+    )
+    orders = models.ManyToManyField(
+        'Order',
+    )
