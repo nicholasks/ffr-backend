@@ -5,14 +5,77 @@ class Product(models.Model):
     """
     Describe and define a product, it can be a food or a drink.
     """
-
+    REALIZADO = 'pe'
+    RECEBIDO = 're'
+    PRODUCAO = 'pr'
+    ENTREGUE = 'en'
+    STATUS_CHOICES = (
+        (REALIZADO, 'Pedido realizado'),
+        (RECEBIDO, 'Recebido'),
+        (PRODUCAO, 'Em preparo'),
+        (ENTREGUE, 'Entregue'),
+    )
+    status = models.CharField(
+        max_lenght=2,
+        choices=STATUS_CHOICES,
+        default=REALIZADO,
+    )
     name = models.CharField(
         max_lenght=32,
         unique=True,
-        null=False,
     )
     description = models.CharField(
-        max_lenght=128,
+        max_lenght=256,
         null=True,
         blank=True,
+    )
+    category = models.ForeignKey(
+        'Category',
+        on_delete=models.SET_NULL,
+        blank=True,
+        null=True,
+    )
+    ingredients = models.ManyToManyField(
+        'Ingredient',
+        blank=True,
+    )
+    tags = models.ManyToManyField(
+        'Tag',
+        blank=True,
+    )
+
+
+class Combo(models.Model):
+    """
+    A Combo is a set of products with a determined price and description
+    """
+    name = models.CharField(
+        max_lenght=32,
+        unique=True,
+    )
+    description = models.CharField(
+        max_lenght=256,
+        null=True,
+        blank=True,
+    )
+    products = models.ManyToManyField(
+        'Product',
+    )
+
+
+class Category(models.Model):
+    name = models.CharField(
+        max_lenght=32,
+        unique=True,
+    )
+    description = models.CharField(
+        max_lenght=256,
+        null=True,
+        blank=True,
+    )
+    parent = models.ForeignKey(
+        'self',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
     )
