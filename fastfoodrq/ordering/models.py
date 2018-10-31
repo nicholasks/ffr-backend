@@ -5,21 +5,6 @@ class Product(models.Model):
     """
     Describe and define a product, it can be a food or a drink.
     """
-    REALIZADO = 'pe'
-    RECEBIDO = 're'
-    PRODUCAO = 'pr'
-    ENTREGUE = 'en'
-    STATUS_CHOICES = (
-        (REALIZADO, 'Pedido realizado'),
-        (RECEBIDO, 'Recebido'),
-        (PRODUCAO, 'Em preparo'),
-        (ENTREGUE, 'Entregue'),
-    )
-    status = models.CharField(
-        max_lenght=2,
-        choices=STATUS_CHOICES,
-        default=REALIZADO,
-    )
     name = models.CharField(
         max_lenght=32,
         unique=True,
@@ -98,3 +83,41 @@ class Tag(models.Model):
         null=True,
         blank=True,
     )
+
+
+class Order(models.Model):
+    REALIZADO = 'pe'
+    RECEBIDO = 're'
+    PRODUCAO = 'pr'
+    ENTREGUE = 'en'
+    STATUS_CHOICES = (
+        (REALIZADO, 'Pedido realizado'),
+        (RECEBIDO, 'Recebido'),
+        (PRODUCAO, 'Em preparo'),
+        (ENTREGUE, 'Entregue'),
+    )
+    status = models.CharField(
+        max_lenght=2,
+        choices=STATUS_CHOICES,
+        default=REALIZADO,
+    )
+    items = models.ManyToManyField(
+        Product,
+        throught='OrderItem',
+        throught_fields=('product', 'order')
+    )
+
+
+class OrderItem(models.Model):
+    product = models.ForeignKey(
+        Product,
+        on_delete=models.CASCADE
+    )
+    order = models.ForeignKey(
+        Order,
+        on_delete=models.CASCADE,
+    )
+    is_promo = models.BooleanField(
+        default=False,
+    )
+    quantity = models.PositiveSmallIntegerField()
