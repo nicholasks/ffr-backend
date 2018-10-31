@@ -79,3 +79,22 @@ class Category(models.Model):
         blank=True,
         on_delete=models.CASCADE,
     )
+
+
+class Ingredient(models.Model):
+    name = models.CharField(
+        max_lenght=32,
+        unique=True,
+    )
+
+
+class Tag(models.Model):
+    name = models.CharField(
+        max_lenght=32,
+        unique=True,
+    )
+    description = models.CharField(
+        max_lenght=256,
+        null=True,
+        blank=True,
+    )
