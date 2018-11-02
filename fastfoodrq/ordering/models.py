@@ -6,11 +6,11 @@ class Product(models.Model):
     Describe and define a product, it can be a food or a drink.
     """
     name = models.CharField(
-        max_lenght=32,
+        max_length=32,
         unique=True,
     )
     description = models.CharField(
-        max_lenght=256,
+        max_length=256,
         null=True,
         blank=True,
     )
@@ -35,11 +35,11 @@ class Combo(models.Model):
     A Combo is a set of products with a determined price and description
     """
     name = models.CharField(
-        max_lenght=32,
+        max_length=32,
         unique=True,
     )
     description = models.CharField(
-        max_lenght=256,
+        max_length=256,
         null=True,
         blank=True,
     )
@@ -50,11 +50,11 @@ class Combo(models.Model):
 
 class Category(models.Model):
     name = models.CharField(
-        max_lenght=32,
+        max_length=32,
         unique=True,
     )
     description = models.CharField(
-        max_lenght=256,
+        max_length=256,
         null=True,
         blank=True,
     )
@@ -68,18 +68,18 @@ class Category(models.Model):
 
 class Ingredient(models.Model):
     name = models.CharField(
-        max_lenght=32,
+        max_length=32,
         unique=True,
     )
 
 
 class Tag(models.Model):
     name = models.CharField(
-        max_lenght=32,
+        max_length=32,
         unique=True,
     )
     description = models.CharField(
-        max_lenght=256,
+        max_length=256,
         null=True,
         blank=True,
     )
@@ -97,14 +97,14 @@ class Order(models.Model):
         (ENTREGUE, 'Entregue'),
     )
     status = models.CharField(
-        max_lenght=2,
+        max_length=2,
         choices=STATUS_CHOICES,
         default=REALIZADO,
     )
     items = models.ManyToManyField(
         Product,
-        throught='OrderItem',
-        throught_fields=('product', 'order')
+        through='OrderItem',
+        through_fields=('order', 'product'),
     )
     table = models.PositiveSmallIntegerField(
         blank=True,
