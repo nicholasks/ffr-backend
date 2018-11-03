@@ -1,6 +1,25 @@
 from django.conf.urls import url, include
-from rest_framework import routers
+from rest_framework import routers, serializers, viewsets
+from fastfoodrq.ordering import (
+    Product,
+)
 
+
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Product
+        fields = (
+            'name',
+            'description',
+            'category',
+            'ingredients',
+            'tags',
+        )
+
+
+class ProductViewSet(viewsets.ModelViewSet):
+    queryset = Product.objects.all()
+    serializer_class = ProductSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
