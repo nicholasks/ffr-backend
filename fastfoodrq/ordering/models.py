@@ -59,13 +59,6 @@ class Combo(models.Model):
 
 class Category(models.Model):
 
-    class Meta:
-        verbose_name = 'Category'
-        verbose_name_plural = 'Categories'
-
-    def __str__(self):
-        return self.name
-
     name = models.CharField(
         max_length=32,
         unique=True,
@@ -82,12 +75,23 @@ class Category(models.Model):
         on_delete=models.CASCADE,
     )
 
+    class Meta:
+        verbose_name = 'Category'
+        verbose_name_plural = 'Categories'
+
+    def __str__(self):
+        return self.name
+
 
 class Ingredient(models.Model):
+
     name = models.CharField(
         max_length=32,
         unique=True,
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Tag(models.Model):
@@ -100,6 +104,9 @@ class Tag(models.Model):
         null=True,
         blank=True,
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Order(models.Model):
