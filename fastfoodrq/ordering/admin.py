@@ -12,7 +12,7 @@ from .models import (
 
 
 class ProductAdmin(admin.ModelAdmin):
-    list_display = ('name', 'description', 'category')
+    list_display = ('name', 'description', 'category', 'price', 'price_promo')
 admin.site.register(Product, ProductAdmin)
 
 

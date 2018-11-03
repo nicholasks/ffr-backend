@@ -28,6 +28,15 @@ class Product(models.Model):
         'Tag',
         blank=True,
     )
+    price = models.FloatField()
+    price_promo = models.FloatField(
+        null=True,
+        blank=True,
+    )
+    image = models.ImageField(
+        null=True,
+        blank=True,
+    )
 
 
 class Combo(models.Model):
