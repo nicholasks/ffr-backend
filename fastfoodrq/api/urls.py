@@ -1,6 +1,6 @@
 from django.conf.urls import url, include
 from rest_framework import routers, serializers, viewsets
-from fastfoodrq.ordering import (
+from fastfoodrq.ordering.models import (
     Product,
 )
 
