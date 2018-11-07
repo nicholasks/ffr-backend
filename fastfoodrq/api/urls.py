@@ -1,28 +1,11 @@
 from django.conf.urls import url, include
-from rest_framework import routers, serializers, viewsets
-from fastfoodrq.ordering.models import (
-    Product,
-)
+from rest_framework import routers
+from fastfoodrq.api.views import ProductViewSet
 
-
-class ProductSerializer(serializers.HyperlinkedModelSerializer):
-    class Meta:
-        model = Product
-        fields = (
-            'name',
-            'description',
-            'category',
-            'ingredients',
-            'tags',
-        )
-
-
-class ProductViewSet(viewsets.ModelViewSet):
-    queryset = Product.objects.all()
-    serializer_class = ProductSerializer
 
 # Routers provide an easy way of automatically determining the URL conf.
 router = routers.DefaultRouter()
+router.register(r'product', ProductViewSet)
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.
