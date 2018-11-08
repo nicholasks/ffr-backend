@@ -1,0 +1,41 @@
+from rest_framework import serializers
+from fastfoodrq.ordering.models import (
+    Product,
+    Category,
+    Ingredient,
+    Tag,
+)
+
+
+class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Product
+        fields = (
+            'name',
+            'description',
+            'category',
+            'ingredients',
+            'tags',
+        )
+
+
+class CategorySerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Category
+        fields = (
+            'name',
+            'description',
+            'parent',
+        )
+
+
+class IngredientSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Ingredient
+        fields = ('__all__')
+
+
+class TagSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Tag
+        fields = ('name', 'description')
