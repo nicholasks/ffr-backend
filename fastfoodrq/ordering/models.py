@@ -39,6 +39,9 @@ class Product(models.Model):
         upload_to='product/'
     )
 
+    def __str__(self):
+        return self.name
+
 
 class Combo(models.Model):
     """
@@ -56,6 +59,9 @@ class Combo(models.Model):
     products = models.ManyToManyField(
         'Product',
     )
+
+    def __str__(self):
+        return self.name
 
 
 class Category(models.Model):
