@@ -36,6 +36,7 @@ class Product(models.Model):
     image = models.ImageField(
         null=True,
         blank=True,
+        upload_to='product/'
     )
 
 

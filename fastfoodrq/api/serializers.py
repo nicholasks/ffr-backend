@@ -16,6 +16,9 @@ class ProductSerializer(serializers.HyperlinkedModelSerializer):
             'category',
             'ingredients',
             'tags',
+            'price',
+            'price_promo',
+            'image',
         )
 
 
