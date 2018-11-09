@@ -11,6 +11,22 @@ from fastfoodrq.ordering.models import (
 
 
 class ProductSerializer(serializers.HyperlinkedModelSerializer):
+    category = serializers.SlugRelatedField(
+        many=False,
+        read_only=True,
+        slug_field='name'
+    )
+    ingredients = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+    )
+    tags = serializers.SlugRelatedField(
+        many=True,
+        read_only=True,
+        slug_field='name'
+    )
+
     class Meta:
         model = Product
         fields = (
