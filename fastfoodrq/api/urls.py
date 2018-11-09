@@ -5,6 +5,10 @@ from fastfoodrq.api.views import (
     CategoryViewSet,
     IngredientViewSet,
     TagViewSet,
+    TabViewSet,
+    OrderViewSet,
+    OrderItemViewSet,
+
 )
 
 
@@ -14,6 +18,10 @@ router.register(r'product', ProductViewSet)
 router.register(r'category', CategoryViewSet)
 router.register(r'ingredient', IngredientViewSet)
 router.register(r'tag', TagViewSet)
+router.register(r'tab', TabViewSet)
+router.register(r'order', OrderViewSet)
+router.register(r'orderitem', OrderItemViewSet)
+
 
 # Wire up our API using automatic URL routing.
 # Additionally, we include login URLs for the browsable API.

@@ -4,6 +4,9 @@ from fastfoodrq.ordering.models import (
     Category,
     Ingredient,
     Tag,
+    Tab,
+    Order,
+    OrderItem,
 )
 
 
@@ -42,3 +45,21 @@ class TagSerializer(serializers.HyperlinkedModelSerializer):
     class Meta:
         model = Tag
         fields = ('name', 'description')
+
+
+class TabSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Tab
+        fields = ('__all__')
+
+
+class OrderSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = Order
+        fields = ('__all__')
+
+
+class OrderItemSerializer(serializers.HyperlinkedModelSerializer):
+    class Meta:
+        model = OrderItem
+        fields = ('__all__')

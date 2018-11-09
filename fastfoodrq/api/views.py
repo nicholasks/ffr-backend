@@ -1,16 +1,22 @@
 from django.shortcuts import render
-from rest_framework import viewsets, generics
+from rest_framework import viewsets
 from fastfoodrq.api.serializers import (
     ProductSerializer,
     CategorySerializer,
     IngredientSerializer,
     TagSerializer,
+    TabSerializer,
+    OrderSerializer,
+    OrderItemSerializer,
 )
 from fastfoodrq.ordering.models import (
     Product,
     Category,
     Ingredient,
     Tag,
+    Tab,
+    Order,
+    OrderItem,
 )
 
 
@@ -39,3 +45,29 @@ class IngredientViewSet(viewsets.ModelViewSet):
 class TagViewSet(viewsets.ModelViewSet):
     queryset = Tag.objects.all()
     serializer_class = TagSerializer
+
+
+class TabViewSet(viewsets.ModelViewSet):
+    queryset = Tab.objects.all()
+    serializer_class = TabSerializer
+
+    def get_queryset(self):
+        queryset = self.queryset
+        qrCode = self.request.query_params.get('qrCode', None)
+        total = self.request.query_params.get('total', None)
+        if qrCode is not None:
+            queryset = queryset.filter(qrCode=qrCode)
+            if total is not None:
+                pass
+
+        return queryset
+
+
+class OrderViewSet(viewsets.ModelViewSet):
+    queryset = Order.objects.all()
+    serializer_class = OrderSerializer
+
+
+class OrderItemViewSet(viewsets.ModelViewSet):
+    queryset = OrderItem.objects.all()
+    serializer_class = OrderItemSerializer

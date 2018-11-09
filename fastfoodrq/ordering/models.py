@@ -141,7 +141,10 @@ class Order(models.Model):
         blank=True,
         null=True,
     )
-    total = models.FloatField()
+    total = models.FloatField(
+        null=True,
+        blank=True,
+    )
 
 
 class OrderItem(models.Model):
@@ -171,4 +174,12 @@ class Tab(models.Model):
     )
     orders = models.ManyToManyField(
         'Order',
+        blank=True,
     )
+    total = models.FloatField(
+        null=True,
+        blank=True,
+    )
+
+    def __str__(self):
+        return str(self.qrCode)
