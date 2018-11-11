@@ -162,6 +162,20 @@ class OrderItem(models.Model):
     quantity = models.PositiveSmallIntegerField(
         default=1,
     )
+    total_price = models.PositiveSmallIntegerField(
+        default=0.0,
+    )
+    unity_price = models.PositiveSmallIntegerField(
+        default=0.0
+    )
+
+    def refresh_price(self):
+        if self.is_promo:
+            self.unity_price = self.product.price_promo
+        else:
+            self.unity_price = self.product.price
+
+        self.total_price = self.unity_price * self.quantity
 
 
 class Tab(models.Model):
