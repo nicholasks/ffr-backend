@@ -146,6 +146,16 @@ class Order(models.Model):
         blank=True,
     )
 
+    def update_total(self):
+        orderitems = []
+        orderitems = OrderItem.objects.filter(order=self)
+        sum = 0.0
+        for item in orderitems:
+            sum += item.total_price
+
+        self.total = sum
+        self.save()
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(
@@ -162,20 +172,22 @@ class OrderItem(models.Model):
     quantity = models.PositiveSmallIntegerField(
         default=1,
     )
-    total_price = models.PositiveSmallIntegerField(
+    total_price = models.FloatField(
         default=0.0,
     )
-    unity_price = models.PositiveSmallIntegerField(
+    unity_price = models.FloatField(
         default=0.0
     )
 
-    def refresh_price(self):
+    def save(self, *args, **kwargs):
         if self.is_promo:
             self.unity_price = self.product.price_promo
         else:
             self.unity_price = self.product.price
 
         self.total_price = self.unity_price * self.quantity
+
+        super(OrderItem, self).save(*args, **kwargs)
 
 
 class Tab(models.Model):
