@@ -127,6 +127,12 @@ class Order(models.Model):
         (PRODUCAO, 'Em preparo'),
         (ENTREGUE, 'Entregue'),
     )
+    tab = models.ForeignKey(
+        'Tab',
+        null=True,
+        blank=True,
+        on_delete=models.CASCADE,
+    )
     status = models.CharField(
         max_length=2,
         choices=STATUS_CHOICES,
@@ -144,6 +150,7 @@ class Order(models.Model):
     total = models.FloatField(
         null=True,
         blank=True,
+        default=0.0,
     )
 
     def update_total(self):
@@ -198,14 +205,20 @@ class Tab(models.Model):
         unique=True,
         blank=False,
     )
-    orders = models.ManyToManyField(
-        'Order',
-        blank=True,
-    )
+
     total = models.FloatField(
         null=True,
         blank=True,
+        default=0.0,
     )
 
     def __str__(self):
         return str(self.qrCode)
+
+    def update_total(self):
+        sum = 0.0
+        for order in self.order_set.all():
+            sum += order.total or 0.0
+
+        self.total = sum
+        self.save()
