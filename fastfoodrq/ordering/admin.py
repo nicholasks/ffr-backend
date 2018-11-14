@@ -37,7 +37,7 @@ admin.site.register(Tag, TagAdmin)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('table', 'status', 'total')
 admin.site.register(Order, OrderAdmin)
 
 
