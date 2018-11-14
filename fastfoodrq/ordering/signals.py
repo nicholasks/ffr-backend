@@ -3,7 +3,6 @@ from django.dispatch import receiver
 from fastfoodrq.ordering.models import (
     OrderItem,
     Order,
-    Tab,
 )
 
 

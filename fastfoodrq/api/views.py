@@ -54,11 +54,8 @@ class TabViewSet(viewsets.ModelViewSet):
     def get_queryset(self):
         queryset = self.queryset
         qrCode = self.request.query_params.get('qrCode', None)
-        total = self.request.query_params.get('total', None)
         if qrCode is not None:
             queryset = queryset.filter(qrCode=qrCode)
-            if total is not None:
-                pass
 
         return queryset
 
