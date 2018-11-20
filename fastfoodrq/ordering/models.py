@@ -142,6 +142,7 @@ class Order(models.Model):
         Product,
         through='OrderItem',
         through_fields=('order', 'product'),
+        blank=True,
     )
     table = models.PositiveSmallIntegerField(
         blank=True,
