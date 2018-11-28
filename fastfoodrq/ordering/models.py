@@ -164,6 +164,9 @@ class Order(models.Model):
         self.total = sum
         self.save()
 
+    def __str__(self):
+        return "Mesa: " + str(self.table) + "  |  Comanda: " + str(self.tab)
+
 
 class OrderItem(models.Model):
     product = models.ForeignKey(

@@ -37,12 +37,12 @@ admin.site.register(Tag, TagAdmin)
 
 
 class OrderAdmin(admin.ModelAdmin):
-    list_display = ('table', 'status', 'total')
+    list_display = ('table', 'tab', 'status', 'total', 'id')
 admin.site.register(Order, OrderAdmin)
 
 
 class OrderItemAdmin(admin.ModelAdmin):
-    pass
+    list_display = ('product', 'quantity', 'order')
 admin.site.register(OrderItem, OrderItemAdmin)
 
 
