@@ -18,9 +18,9 @@ from django.urls import path, include
 from django.conf import settings
 
 urlpatterns = [
-    path('admin/', admin.site.urls),
-    path('ordering/', include('fastfoodrq.ordering.urls')),
-    path('api/', include('fastfoodrq.api.urls')),
+    path('b/admin/', admin.site.urls),
+    path('b/ordering/', include('fastfoodrq.ordering.urls')),
+    path('b/api/', include('fastfoodrq.api.urls')),
 ]
 
 
