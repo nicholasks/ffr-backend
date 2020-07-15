@@ -5,9 +5,10 @@
  -> Create a virtualenv (desirable) <-
 
 * Install Python 3.5
-* Install requirements: `pip install -r requirements.txt`
 * Clone this repository
-* Change to repository directory and run:
+* Change to repository directory
+* Install requirements: `pip install -r requirements.txt`
+* And run it:
 
 `python manage.py runserver 8080`
 
