@@ -1,7 +1,7 @@
 # configure updates globally
 # default: all
 # allowed: all, insecure, False
-update: all
+update: insecure
 
 # configure dependency pinning globally
 # default: True
@@ -15,21 +15,12 @@ branch: master
 # update schedule
 # default: empty
 # allowed: "every day", "every week", ..
-schedule: "every day"
+schedule: "every month"
 
 # search for requirement files
 # default: True
 # allowed: True, False
 search: True
-
-# Specify requirement files by hand, default is empty
-# default: empty
-# allowed: list
-requirements:
-  - requirements.txt:
-      # update all dependencies and pin them
-      update: all
-      pin: True
 
 # add a label to pull requests, default is not set
 # requires private repo permissions, even on public repos
@@ -39,9 +30,8 @@ label_prs: update
 # assign users to pull requests, default is not set
 # requires private repo permissions, even on public repos
 # default: empty
-# assignees:
-#  - carl
-#  - carlsen
+assignees:
+  - nicholasks
 
 # configure the branch prefix the bot is using
 # default: pyup-
