@@ -1,6 +1,3 @@
-[![Python 3](https://pyup.io/repos/github/nicholasks/ffr-backend/python-3-shield.svg?token=5bec0306-d198-4afc-91d1-242d5e7c066b)](https://pyup.io/repos/github/nicholasks/ffr-backend/)
-[![Updates](https://pyup.io/repos/github/nicholasks/ffr-backend/shield.svg?token=5bec0306-d198-4afc-91d1-242d5e7c066b)](https://pyup.io/repos/github/nicholasks/ffr-backend/)
-
 
 # A Digital Menu for restaurants
 
